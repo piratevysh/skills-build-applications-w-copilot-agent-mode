@@ -15,3 +15,13 @@ class TeamViewSet(viewsets.ModelViewSet):
 class ActivityViewSet(viewsets.ModelViewSet):
     queryset = models.Activity.objects.all()
     serializer_class = serializers.ActivitySerializer
+
+
+class WorkoutViewSet(viewsets.ModelViewSet):
+    queryset = models.Workout.objects.all()
+    serializer_class = serializers.WorkoutSerializer
+
+
+class LeaderboardViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = models.Leaderboard.objects.all().order_by('-score')
+    serializer_class = serializers.LeaderboardSerializer

@@ -32,4 +32,21 @@ class ActivitySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Activity
-        fields = ["_id", "user", "team", "activity_type", "duration_minutes", "timestamp"]
+        fields = ["_id", "user", "team", "activity_type", "duration_minutes", "distance_km", "calories", "timestamp"]
+
+
+class WorkoutSerializer(serializers.ModelSerializer):
+    _id = ObjectIdField(read_only=True)
+
+    class Meta:
+        model = models.Workout
+        fields = ["_id", "title", "description", "duration_minutes"]
+
+
+class LeaderboardSerializer(serializers.ModelSerializer):
+    _id = ObjectIdField(read_only=True)
+    user = UserProfileSerializer(read_only=True)
+
+    class Meta:
+        model = models.Leaderboard
+        fields = ["_id", "user", "score", "period"]
